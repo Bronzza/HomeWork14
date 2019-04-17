@@ -4,22 +4,16 @@ import entities.Developer;
 import lombok.extern.log4j.Log4j;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.criterion.Restrictions;
 import persistence.HibernateUtil;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.PostRemove;
 import javax.persistence.PrePersist;
 import java.util.List;
 
 @Log4j
-public class DaoDev extends Dao<Developer> {
+public class DeveloperRepository extends DataBaseRepository<Developer> {
 
     @Override
     public List<Developer> getAll() {
@@ -27,33 +21,33 @@ public class DaoDev extends Dao<Developer> {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            return session.createQuery(" from developers").list();
+            return session.createQuery(" from developer").list();
         } finally {
             HibernateUtil.shutdown();
         }
     }
 
     @Override
-    public List<Developer> get(String surName) {
+    public List<Developer> get(String surname) {
         writeLogBefore();
         try {
             Criteria criteria = HibernateUtil.getSessionFactory().openSession().createCriteria(Developer.class);
-            Hibernate.initialize(criteria.add(Restrictions.eq("surName", surName)).list());
-            return criteria.add(Restrictions.eq("surName", surName)).list();
+            Hibernate.initialize(criteria.add(Restrictions.eq("surName", surname)).list());
+            return criteria.add(Restrictions.eq("surName", surname)).list();
         } finally {
             HibernateUtil.shutdown();
         }
     }
 
     @Override
-    public void delete(String surName) {
+    public void delete(String surname) {
         List<Developer> developersToDelete = null;
         int sizeOfArray;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             Criteria criteria = session.createCriteria(Developer.class);
-            developersToDelete = criteria.add(Restrictions.eq("surName", surName)).list();
+            developersToDelete = criteria.add(Restrictions.eq("surName", surname)).list();
             sizeOfArray = developersToDelete.size();
             session.beginTransaction();
             developersToDelete.forEach(session::delete);

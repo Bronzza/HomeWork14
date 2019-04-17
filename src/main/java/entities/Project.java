@@ -11,19 +11,19 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.PostLoad;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.Set;
 
 @Log4j
-@javax.persistence.Entity(name = "projects")
-
-@Table
+@javax.persistence.Entity(name = "project")
+@Table(name = "projects")
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Project extends Task {
     @Column(name = "date_of_start")
-    private String date;
+    private Date date;
     @Column(name = "cost")
     private Integer cost;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projectsSet")

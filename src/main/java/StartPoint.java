@@ -1,4 +1,4 @@
-import dao.DaoDev;
+import dao.DeveloperRepository;
 import entities.Developer;
 import entities.Project;
 import org.hibernate.Criteria;
@@ -14,14 +14,14 @@ public class StartPoint {
         Criteria criteria = session.createCriteria(Developer.class);
         Criteria criteria1 = session.createCriteria(Project.class);
         List<Developer> developers = criteria.add(Restrictions.between("salary", 400, 600))
-                .add(Restrictions.like("surName", "D%"))
+                .add(Restrictions.like("surname", "D%"))
                 .list();
         List<Project> projects = criteria1.add(Restrictions.eq("cost", 1000)).list();
         List<Developer> allDevelopers = session.createCriteria(Developer.class).list();
-        DaoDev daoDev = new DaoDev();
+        DeveloperRepository developerRepository = new DeveloperRepository();
         List<Developer> list1;
         session.beginTransaction();
-        list1 = daoDev.getAll();
+        list1 = developerRepository.getAll();
 
         developers.forEach(System.out::println);
         System.out.println("\n");
@@ -32,6 +32,5 @@ public class StartPoint {
             session.getTransaction().commit();
         }
         HibernateUtil.shutdown();
-
     }
 }
