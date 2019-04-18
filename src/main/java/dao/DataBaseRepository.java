@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-public abstract class DataBaseRepository<T> {
+interface DataBaseRepository<T> {
     public abstract List<T> getAll();
 
     public abstract List<T> get(String surname);

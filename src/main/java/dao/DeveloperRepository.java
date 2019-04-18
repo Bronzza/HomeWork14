@@ -13,7 +13,7 @@ import javax.persistence.PrePersist;
 import java.util.List;
 
 @Log4j
-public class DeveloperRepository extends DataBaseRepository<Developer> {
+public class DeveloperRepository implements DataBaseRepository<Developer> {
 
     @Override
     public List<Developer> getAll() {
