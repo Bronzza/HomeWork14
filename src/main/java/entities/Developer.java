@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 @ToString
-@javax.persistence.Entity(name = "developer")
+@Entity(name = "developer")
 @Table (name = "developers")
 @Getter
 @Setter

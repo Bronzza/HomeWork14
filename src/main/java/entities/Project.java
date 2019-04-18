@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.PostLoad;
@@ -15,7 +16,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Log4j
-@javax.persistence.Entity(name = "project")
+@Entity(name = "project")
 @Table(name = "projects")
 @Setter
 @Getter
