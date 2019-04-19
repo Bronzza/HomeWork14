@@ -22,8 +22,10 @@ public class Human {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "last_name")
     private String surname;
+
     @Column(name = "first_name")
     private String firstname;
 }

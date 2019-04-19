@@ -19,17 +19,20 @@ import java.util.Set;
 
 @ToString
 @Entity(name = "developer")
-@Table (name = "developers")
+@Table(name = "developers")
 @Getter
 @Setter
 public class Developer extends Human {
     @Column(name = "age")
     private Integer age;
+
     @Column(name = "is_man", length = 6)
-    @Enumerated (EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Gender isMale;
+
     @Column(name = "salary")
     private Integer salary;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "develop_proj",
             joinColumns = @JoinColumn(name = "id_developers"),

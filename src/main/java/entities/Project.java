@@ -30,9 +30,11 @@ public class Project extends Task {
     @Basic
     @Temporal(TemporalType.DATE)
     private Date date;
+
     @Column(name = "cost")
     private Integer cost;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projectsSet")
+
     private Set<Developer> developers;
 
     @Override
